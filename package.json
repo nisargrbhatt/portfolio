@@ -12,7 +12,7 @@
     "format": "prettier --write .",
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook --no-dll -o docs-build",
     "eslint:fix": "eslint --fix ."
   },
   "dependencies": {
