@@ -1,3 +1,5 @@
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 module.exports = {
   stories: ['../**/*.stories.@(js|jsx|ts|tsx)'],
   /** Expose public folder to storybook as static */
@@ -24,5 +26,13 @@ module.exports = {
   framework: '@storybook/react',
   core: {
     builder: '@storybook/builder-webpack5',
+  },
+  webpackFinal: async (config, { configType }) => {
+    /**
+     * Fix Storybook issue with TSConfig Custom Paths
+     * @see https://github.com/storybookjs/storybook/issues/6316
+     */
+    config.resolve.plugins = [new TsconfigPathsPlugin()];
+    return config;
   },
 };
