@@ -1,31 +1,46 @@
-import React from 'react';
+import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
+
 import createEmotionCache from '../utility/createEmotionCache';
 
 /**
- *  @return {JSX.Element}
+ * _document Class Component
+ * @date 3/7/2022 - 10:16:59 pm
+ *
+ * @export
+ * @class MyDocument
+ * @typedef {MyDocument}
+ * @extends {Document}
  */
-export default function MyDocument() {
-  return (
-    <Html lang="en">
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
-      </Head>
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+export default class MyDocument extends Document {
+  /**
+   * MyDocument Render method
+   * @date 3/7/2022 - 10:17:09 pm
+   *
+   * @return {JSX.Element}
+   */
+  render() {
+    return (
+      <Html lang="en">
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
 
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with static-site generation (SSG).
-MyDocument.getInitialProps = async (ctx: any) => {
+MyDocument.getInitialProps = async (ctx) => {
   // Resolution order
   //
   // On the server:
@@ -58,10 +73,8 @@ MyDocument.getInitialProps = async (ctx: any) => {
   /* eslint-disable */
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App: any) =>
-        function EnhanceApp(props: any) {
-          return <App emotionCache={cache} {...props} />;
-        },
+      enhanceApp: (App: any) => (props) =>
+        <App emotionCache={cache} {...props} />,
     });
   /* eslint-enable */
 
