@@ -1,6 +1,8 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { User } from '@prisma/client';
-import prisma from '@lib/prisma';
+import { PrismaSingleton } from '@lib/prisma';
+
+const prisma = PrismaSingleton.getInstance();
 
 /**
  * Get List of Users
