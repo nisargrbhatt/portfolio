@@ -10,8 +10,88 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "../KT/ERD.svg"
+}
+
+// Admin Managed
+model UserSkillType {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  name          String          @unique
+  image         String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  UserSkillName UserSkillName[]
+}
+
+model UserSkillName {
+  id              String            @id @default(auto()) @map("_id") @db.ObjectId
+  name            String            @unique
+  image           String
+  userSkillTypeId String            @db.ObjectId
+  userSkillType   UserSkillType     @relation(fields: [userSkillTypeId], references: [id])
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  PortfolioSkills PortfolioSkills[]
+}
+
+// User Managed
+
 model User {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  email String  @unique
-  name  String?
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  email         String     @unique
+  name          String
+  auth0Id       String
+  picture       String?
+  emailVerified Boolean    @default(false)
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  Portfolio     Portfolio?
+}
+
+model Portfolio {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String        @unique @db.ObjectId
+  user         User          @relation(fields: [userId], references: [id])
+  PortfolioBio PortfolioBio?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model PortfolioBio {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  bio         String
+  quote       String
+  portfolioId String    @unique @db.ObjectId
+  portfolio   Portfolio @relation(fields: [portfolioId], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model PortfolioSkills {
+  id              String        @id @default(auto()) @map("_id") @db.ObjectId
+  level           Int
+  userSkillNameId String        @db.ObjectId
+  userSkillName   UserSkillName @relation(fields: [userSkillNameId], references: [id])
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+model PortfolioProjects {
+  id                    String                  @id @default(auto()) @map("_id") @db.ObjectId
+  name                  String
+  description           String
+  images                String[]
+  previewUrl            String?
+  PortfolioProjectLinks PortfolioProjectLinks[]
+}
+
+model PortfolioProjectLinks {
+  id                  String            @id @default(auto()) @map("_id") @db.ObjectId
+  name                String
+  type                String
+  value               String
+  portfolioProjectsId String            @db.ObjectId
+  portfolioProject    PortfolioProjects @relation(fields: [portfolioProjectsId], references: [id])
 }
