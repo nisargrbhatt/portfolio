@@ -1,3 +1,18 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import { SEO, type SEOProps } from "astro-seo";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+
+export interface Props {
+	seo?: SEOProps;
+	title: string;
+}
+
+const { title = "Nisarg Bhatt", seo } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,18 +20,37 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+		<ClientRouter />
+		{seo ? <SEO {...seo} /> : null}
 	</head>
-	<body>
-		<slot />
+	<body
+		class="w-screen h-screen flex flex-col justify-start items-start overflow-y-hidden"
+	>
+		<Header />
+		<main class="container mx-auto h-full w-full overflow-y-auto">
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>
 
-<style>
-	html,
-	body {
+<style is:global>
+	:root {
+		--font-family: "Noto Sans", sans-serif;
+	}
+	html {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+	}
+	* {
+		min-width: 0;
 	}
 </style>
