@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: 'Noto Sans', 'sans-serif';
+  --font-sans: "Noto Sans", "sans-serif";
 }
 
 :root {

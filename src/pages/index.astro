@@ -7,48 +7,40 @@ const site = Astro.site;
 ---
 
 <Layout
-	title="Nisarg Bhatt Portfolio"
-	seo={{
-		title: "Nisarg Bhatt Portfolio",
-		description:
-			"I'm Nisarg Bhatt, a Full Stack Developer from India. I'm passionate about building scalable and performant applications using modern technologies.",
-		openGraph: {
-			basic: {
-				title: "Nisarg Bhatt Portfolio",
-				type: "website",
-				image: "https://avatars.githubusercontent.com/u/52268853",
-				url: site,
-			},
-		},
-	}}
+  title="Nisarg Bhatt Portfolio"
+  seo={{
+    title: "Nisarg Bhatt Portfolio",
+    description:
+      "I'm Nisarg Bhatt, a Full Stack Developer from India. I'm passionate about building scalable and performant applications using modern technologies.",
+    openGraph: {
+      basic: {
+        title: "Nisarg Bhatt Portfolio",
+        type: "website",
+        image: "https://avatars.githubusercontent.com/u/52268853",
+        url: site,
+      },
+    },
+  }}
 >
-	<div class="flex flex-col justify-start items-start gap-4 py-4 w-full">
-		<section
-			id="hero"
-			class="grid grid-cols-1 md:grid-cols-2 px-2 flex-1 gap-x-1 gap-y-2 w-full"
-		>
-			<div class="flex flex-col justify-start items-start gap-1">
-				<h1 class="text-center">Nisarg Bhatt</h1>
-				<p class="text-sm font-light text-gray-500">
-					Full Stack Developer
-				</p>
-			</div>
+  <div class="flex flex-col justify-start items-start gap-4 py-4 w-full">
+    <section id="hero" class="grid grid-cols-1 md:grid-cols-2 px-2 flex-1 gap-x-1 gap-y-2 w-full">
+      <div class="flex flex-col justify-start items-start gap-1">
+        <h1 class="text-center">Nisarg Bhatt</h1>
+        <p class="text-sm font-light text-gray-500">Full Stack Developer</p>
+      </div>
 
-			<div class="flex flex-col justify-start items-start gap-1">
-				<p class="text-md font-light">Namaste 🇮🇳</p>
-				<p class="text-md font-light">
-					I'm <strong>Nisarg Bhatt</strong>, a full stack developer at
-					<a href="https://sath.com" target="_blank" class="underline"
-						>Sath</a
-					>
-				</p>
-				<p class="text-sm font-light text-gray-500">
-					Mainly work on Typescript ecosystem, but I'm also good at
-					GoLang and CSS.
-				</p>
-			</div>
-		</section>
-		<LatestBlog />
-		<LatestProject />
-	</div>
+      <div class="flex flex-col justify-start items-start gap-1">
+        <p class="text-md font-light">Namaste 🇮🇳</p>
+        <p class="text-md font-light">
+          I'm <strong>Nisarg Bhatt</strong>, a full stack developer at
+          <a href="https://sath.com" target="_blank" class="underline">Sath</a>
+        </p>
+        <p class="text-sm font-light text-gray-500">
+          Mainly work on Typescript ecosystem, but I'm also good at GoLang and CSS.
+        </p>
+      </div>
+    </section>
+    <LatestBlog />
+    <LatestProject />
+  </div>
 </Layout>
