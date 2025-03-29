@@ -18,7 +18,7 @@ const posts = await getCollection("blog");
               {post.data.title}
             </h2>
             <div class="mb-4 text-gray-600 dark:text-gray-400">
-              <time datetime={post.data.date}>{post.data.date}</time>
+              <time datetime={post.data.date.toString()}>{post.data.date}</time>
             </div>
             <p class="prose dark:prose-invert" transition:name="blog-description">
               {post.data.description}

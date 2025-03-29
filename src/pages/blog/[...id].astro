@@ -21,18 +21,38 @@ const { Content } = await render(post);
   seo={{
     title: post.data.title,
     description: post.data.description,
+    extend: {
+      meta: [
+        {
+          name: "keywords",
+          content: post.data.keywords,
+        },
+        {
+          name: "author",
+          content: "Nisarg Bhatt"
+        }
+      ],
+    },
   }}
 >
   <div class="flex flex-col justify-start items-center gap-1 w-full">
     <div class="w-full">
       <a href="/blog" class="text-xs hover:underline"> ← Back to Blog </a>
     </div>
-    <h1 class="text-3xl w-full text-center" transition:name="blog-name">
+    <h1 class="text-3xl w-full text-center font-extrabold" transition:name="blog-name">
       {post.data.title}
     </h1>
     <p class="text-xs font-light w-full text-center text-gray-500" transition:name="blog-description">
       {post.data.description}
     </p>
+    <time
+      class="text-xs font-light text-gray-500"
+      aria-label="Published on"
+      datetime={post.data?.date?.toString()}
+      title={post.data?.date?.toString()}
+    >
+      {post.data?.date?.toString()}
+    </time>
     <div class="prose prose-base dark:prose-invert prose-a:text-blue-600 w-full py-2">
       <Content />
     </div>
