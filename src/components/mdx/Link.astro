@@ -8,6 +8,11 @@ export interface Props {
 const props = Astro.props;
 ---
 
-<a class="text-blue-600 hover:underline" href={props.href} target={props?.target} style={props.style}>
+<a
+  class="cursor-pointer font-normal hover:underline"
+  href={props.href}
+  target={props?.target}
+  style={props.style}
+>
   <slot />
 </a>

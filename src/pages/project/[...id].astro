@@ -1,0 +1,52 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("project");
+  return projects.map((project) => ({
+    params: { id: project.id },
+    props: project,
+  }));
+}
+type Props = CollectionEntry<"project">;
+
+const project = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout
+  title={project.data.title}
+  seo={{
+    title: project.data.title,
+    description: project.data.description,
+    extend: {
+      meta: [
+        {
+          name: "keywords",
+          content: project.data.keywords,
+        },
+        {
+          name: "author",
+          content: "Nisarg Bhatt",
+        },
+      ],
+    },
+  }}
+>
+  <div class="flex flex-col justify-start items-center gap-1 w-full">
+    <div class="w-full">
+      <a href="/project" class="text-xs hover:underline"> ← Back to Project </a>
+    </div>
+    <h1 class="text-3xl w-full text-center font-extrabold" transition:name="project-name">
+      {project.data.title}
+    </h1>
+    <p class="text-xs font-light w-full text-center text-gray-500" transition:name="project-description">
+      {project.data.description}
+    </p>
+    <div class="prose prose-base dark:prose-invert w-full py-2">
+      <Content />
+    </div>
+  </div>
+</Layout>
