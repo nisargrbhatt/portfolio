@@ -14,9 +14,10 @@ const latestProject = projects?.at(-1);
     <a
       href={`/project/${latestProject?.id}`}
       class="text-md font-light hover:underline hover:font-medium"
-      transition:name="project-name">{latestProject?.data?.title}</a
+      transition:name="project-name"
+      transition:animate="slide">{latestProject?.data?.title}</a
     >
-    <p class="text-sm font-light text-gray-500" transition:name="project-description">
+    <p class="text-sm font-light text-gray-500" transition:name="project-description" transition:animate="slide">
       {latestProject?.data?.description}
     </p>
   </div>

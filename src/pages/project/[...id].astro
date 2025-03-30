@@ -39,10 +39,10 @@ const { Content } = await render(project);
     <div class="w-full">
       <a href="/project" class="text-xs hover:underline"> ← Back to Project </a>
     </div>
-    <h1 class="text-3xl w-full text-center font-extrabold" transition:name="project-name">
+    <h1 class="text-3xl text-center font-extrabold" transition:name="project-name" transition:animate="slide">
       {project.data.title}
     </h1>
-    <p class="text-xs font-light w-full text-center text-gray-500" transition:name="project-description">
+    <p class="text-xs font-light text-center text-gray-500" transition:name="project-description">
       {project.data.description}
     </p>
     <div class="prose prose-base dark:prose-invert w-full py-2">

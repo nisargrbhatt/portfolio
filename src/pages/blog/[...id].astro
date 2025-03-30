@@ -29,8 +29,8 @@ const { Content } = await render(post);
         },
         {
           name: "author",
-          content: "Nisarg Bhatt"
-        }
+          content: "Nisarg Bhatt",
+        },
       ],
     },
   }}
@@ -39,10 +39,10 @@ const { Content } = await render(post);
     <div class="w-full">
       <a href="/blog" class="text-xs hover:underline"> ← Back to Blog </a>
     </div>
-    <h1 class="text-3xl w-full text-center font-extrabold" transition:name="blog-name">
+    <h1 class="text-3xl text-center font-extrabold" transition:name="blog-name">
       {post.data.title}
     </h1>
-    <p class="text-xs font-light w-full text-center text-gray-500" transition:name="blog-description">
+    <p class="text-xs font-light text-center text-gray-500" transition:name="blog-description">
       {post.data.description}
     </p>
     <time
