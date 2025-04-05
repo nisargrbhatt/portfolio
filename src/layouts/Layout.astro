@@ -7,9 +7,10 @@ import Footer from "./Footer.astro";
 export interface Props {
   seo?: SEOProps;
   title: string;
+  structuredData?: string;
 }
 
-const { title = "Nisarg Bhatt", seo } = Astro.props;
+const { title = "Nisarg Bhatt", seo, structuredData } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,6 +20,7 @@ const { title = "Nisarg Bhatt", seo } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noarchive" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,6 +30,7 @@ const { title = "Nisarg Bhatt", seo } = Astro.props;
     />
 
     {seo ? <SEO {...seo} /> : null}
+    {structuredData ? <script is:inline is:raw type="application/ld+json" set:html={structuredData} /> : null}
   </head>
   <body class="h-full w-full min-h-screen flex flex-col justify-start items-start">
     <Header />

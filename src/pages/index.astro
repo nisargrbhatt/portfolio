@@ -13,20 +13,54 @@ const site = Astro.site;
 ---
 
 <Layout
-  title="Nisarg Bhatt Portfolio"
+  title="Nisarg Bhatt"
   seo={{
-    title: "Nisarg Bhatt Portfolio",
+    title: "Nisarg Bhatt",
     description:
       "I'm Nisarg Bhatt, a Full Stack Developer from India. I'm passionate about building scalable and performant applications using modern technologies.",
+    extend: {
+      meta: [
+        {
+          name: "keywords",
+          content: "portfolio, javascript, typescript, developer",
+        },
+      ],
+    },
     openGraph: {
       basic: {
-        title: "Nisarg Bhatt Portfolio",
+        title: "Nisarg Bhatt",
         type: "website",
-        image: "https://avatars.githubusercontent.com/u/52268853",
+        image: "https://nisargbhatt.org/me.png",
         url: site,
       },
     },
+    twitter: {
+      card: "summary_large_image",
+      title: "Nisarg Bhatt",
+      description:
+        "I'm Nisarg Bhatt, a Full Stack Developer from India. I'm passionate about building scalable and performant applications using modern technologies.",
+      image: "https://nisargbhatt.org/me.png",
+      imageAlt: "Nisarg Bhatt",
+      site: site?.toString(),
+    },
+    charset: "utf-8",
   }}
+  structuredData=`{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "image": "https://nisargbhatt.org/me.png",
+  "jobTitle": "Full Stack Developer",
+  "name": "Nisarg Bhatt",
+  "givenName": "Nisarg",
+  "familyName": "Bhatt",
+  "url": "https://nisargbhatt.org",
+  "sameAs": [
+    "https://github.com/nisargrbhatt",
+    "https://www.linkedin.com/in/nisarg-r-bhatt/",
+    "https://x.com/nisarg_2001"
+  ],
+  "email": "mailto:nisargrbhatt@gmail.com"
+}`
 >
   <!-- Hero Section -->
   <section id="hero" class="py-20 md:py-28">
