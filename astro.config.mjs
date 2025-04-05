@@ -18,7 +18,7 @@ export default defineConfig({
       } : undefined,
     },
   },
-  site: "https://nisargbhatt.com",
+  site: "https://nisargbhatt.org",
   output: "static",
   integrations: [sitemap(), mdx(), react()],
 });
