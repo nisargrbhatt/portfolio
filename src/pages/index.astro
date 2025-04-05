@@ -47,19 +47,22 @@ const site = Astro.site;
   }}
   structuredData=`{
   "@context": "https://schema.org",
-  "@type": "Person",
-  "image": "https://nisargbhatt.org/me.png",
-  "jobTitle": "Full Stack Developer",
-  "name": "Nisarg Bhatt",
-  "givenName": "Nisarg",
-  "familyName": "Bhatt",
-  "url": "https://nisargbhatt.org",
-  "sameAs": [
-    "https://github.com/nisargrbhatt",
-    "https://www.linkedin.com/in/nisarg-r-bhatt/",
-    "https://x.com/nisarg_2001"
-  ],
-  "email": "mailto:nisargrbhatt@gmail.com"
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "image": "https://nisargbhatt.org/me.png",
+    "jobTitle": "Full Stack Developer",
+    "name": "Nisarg Bhatt",
+    "givenName": "Nisarg",
+    "familyName": "Bhatt",
+    "url": "https://nisargbhatt.org",
+    "sameAs": [
+      "https://github.com/nisargrbhatt",
+      "https://www.linkedin.com/in/nisarg-r-bhatt/",
+      "https://x.com/nisarg_2001"
+    ],
+    "email": "mailto:nisargrbhatt@gmail.com"
+  }
 }`
 >
   <!-- Hero Section -->
