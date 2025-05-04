@@ -1,4 +1,5 @@
 ---
+import { Button } from "@components/ui/button";
 import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 import { render } from "astro:content";
@@ -25,7 +26,7 @@ const { Content } = await render(post);
       meta: [
         {
           name: "keywords",
-          content: post.data.keywords,
+          content: post.data.keywords.join(","),
         },
         {
           name: "author",
@@ -35,14 +36,16 @@ const { Content } = await render(post);
     },
   }}
 >
-  <div class="flex flex-col justify-start items-center gap-1 w-full">
+  <div class="flex flex-col justify-start items-center gap-2 px-2 w-full">
     <div class="w-full">
-      <a href="/blog" class="text-xs hover:underline"> ← Back to Blog </a>
+      <a href="/blog">
+        <Button variant="link" size="sm">← Back to Blog</Button>
+      </a>
     </div>
     <h1 class="text-3xl text-center font-extrabold" transition:name="blog-name">
       {post.data.title}
     </h1>
-    <p class="text-xs font-light text-center text-gray-500" transition:name="blog-description">
+    <p class="text-sm font-light text-center text-gray-500" transition:name="blog-description">
       {post.data.description}
     </p>
     <time
@@ -51,9 +54,15 @@ const { Content } = await render(post);
       datetime={post.data?.date?.toString()}
       title={post.data?.date?.toString()}
     >
-      {post.data?.date?.toString()}
+      {
+        post.data?.date?.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      }
     </time>
-    <div class="prose prose-base dark:prose-invert prose-a:text-blue-600 w-full py-2">
+    <div class="prose prose-base dark:prose-invert prose-a:text-blue-600 w-full py-2 max-w-4xl">
       <Content />
     </div>
   </div>

@@ -8,8 +8,11 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import HireMeCal from "@components/home/HireMeCal";
 import BrainstormIdeaCal from "@components/home/BrainstormIdeaCal";
+import { getCollection } from "astro:content";
 
 const site = Astro.site;
+
+const projects = await getCollection("project");
 ---
 
 <Layout
@@ -83,7 +86,9 @@ const site = Astro.site;
           <a href="#contact">
             <Button id="contact-me-btn">Contact Me</Button>
           </a>
-          <Button variant="outline">View Resume</Button>
+          <a href="/resume.pdf" target="_blank">
+            <Button variant="outline">View Resume</Button>
+          </a>
         </div>
       </div>
     </div>
@@ -112,73 +117,48 @@ const site = Astro.site;
   </section>
 
   <!-- Projects Section -->
-  <!-- <section id="projects" class="py-12">
-  <div class="container px-4 md:px-6">
-    <div class="flex flex-col items-center justify-center space-y-4 text-center animate-on-scroll">
-      <div class="space-y-2">
-        <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">My Projects</h2>
-        <p
-          class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"
-        >
-          Check out some of my recent work
-        </p>
+  <section id="projects" class="py-12">
+    <div class="container px-4 md:px-6">
+      <div class="flex flex-col items-center justify-center space-y-4 text-center animate-on-scroll">
+        <div class="space-y-2">
+          <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">My Projects</h2>
+          <p
+            class="max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"
+          >
+            Check out some of my recent work
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {
+          projects?.map((project) => (
+            <Card className="animate-on-scroll delay-100 hover-lift" key={project.id}>
+              <CardHeader>
+                <CardTitle>{project?.data?.title}</CardTitle>
+                <CardDescription>{project?.data?.short_description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div class="flex flex-wrap gap-1">
+                  {project?.data?.keywords?.map((keyword) => (
+                    <Badge variant="outline" key={keyword} className="capitalize">
+                      {keyword}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+              <CardFooter>
+                <a href={`/project/${project.id}`}>
+                  <Button variant="outline" size="sm" className="w-full">
+                    View Project
+                  </Button>
+                </a>
+              </CardFooter>
+            </Card>
+          ))
+        }
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-      <Card className="animate-on-scroll delay-100 hover-lift">
-        <CardHeader>
-          <CardTitle>E-commerce Platform</CardTitle>
-          <CardDescription>A full-featured online store with payment processing</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div class="aspect-video rounded-md bg-muted mb-4"></div>
-          <div class="flex flex-wrap gap-1">
-            <Badge variant="outline">React</Badge>
-            <Badge variant="outline">Node.js</Badge>
-            <Badge variant="outline">MongoDB</Badge>
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button variant="outline" size="sm" className="w-full">View Project</Button>
-        </CardFooter>
-      </Card>
-      <Card className="animate-on-scroll delay-100 hover-lift">
-        <CardHeader>
-          <CardTitle>Task Management App</CardTitle>
-          <CardDescription>Productivity tool with real-time collaboration</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div class="aspect-video rounded-md bg-muted mb-4"></div>
-          <div class="flex flex-wrap gap-1">
-            <Badge variant="outline">Next.js</Badge>
-            <Badge variant="outline">TypeScript</Badge>
-            <Badge variant="outline">Supabase</Badge>
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button variant="outline" size="sm" className="w-full">View Project</Button>
-        </CardFooter>
-      </Card>
-      <Card className="animate-on-scroll delay-100 hover-lift">
-        <CardHeader>
-          <CardTitle>Weather Dashboard</CardTitle>
-          <CardDescription>Real-time weather data visualization</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div class="aspect-video rounded-md bg-muted mb-4"></div>
-          <div class="flex flex-wrap gap-1">
-            <Badge variant="outline">Astro</Badge>
-            <Badge variant="outline">Tailwind</Badge>
-            <Badge variant="outline">API Integration</Badge>
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button variant="outline" size="sm" className="w-full">View Project</Button>
-        </CardFooter>
-      </Card>
-    </div>
-  </div>
-</section> -->
+  </section>
 
   <!-- Skills Section -->
   <section id="skills" class="py-12 bg-muted/50">

@@ -1,4 +1,4 @@
-import { glob } from "astro/loaders";
+import { glob, file } from "astro/loaders";
 import { defineCollection, reference, z } from "astro:content";
 
 const blog = defineCollection({
@@ -8,20 +8,33 @@ const blog = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     relatedPosts: z.array(reference("blog")).catch([]),
-    keywords: z.string(),
+    keywords: z.array(z.string()),
   }),
 });
 
 const project = defineCollection({
-  loader: glob({ pattern: "**/*.mdx", base: "./src/content/project" }),
+  loader: file("./src/content/projects.json"),
   schema: z.object({
     title: z.string(),
+    short_description: z.string().describe("Used for Cards and SEO"),
     description: z.string(),
-    keywords: z.string(),
+    keywords: z.array(z.string()),
+    repos: z.array(
+      z.object({
+        name: z.string(),
+        url: z.string(),
+      })
+    ),
+    previews: z.array(
+      z.object({
+        url: z.string(),
+        alt: z.string(),
+      })
+    ),
   }),
 });
 
 export const collections = {
   blog,
-  project
+  project,
 };

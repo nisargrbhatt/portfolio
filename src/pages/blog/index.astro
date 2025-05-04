@@ -1,4 +1,7 @@
 ---
+import { Badge } from "@components/ui/badge";
+import { Button } from "@components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@components/ui/card";
 import Layout from "@layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
@@ -9,22 +12,39 @@ const posts = await getCollection("blog");
   <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 py-2">
     {
       posts.map((post) => (
-        <a href={`/blog/${post.id}`}>
-          <article class="w-full rounded-lg border border-gray-200 bg-white p-6 hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
-            <h2
-              class="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-              transition:name="blog-name"
-            >
-              {post.data.title}
-            </h2>
-            <div class="mb-4 text-gray-600 dark:text-gray-400">
-              <time datetime={post.data.date.toString()}>{post.data.date}</time>
+        <Card className="animate-on-scroll delay-100 hover-lift">
+          <CardHeader>
+            <CardTitle>{post?.data?.title}</CardTitle>
+            <CardDescription>{post?.data?.description}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div class="flex flex-wrap gap-1 pb-1">
+              {post?.data?.keywords?.map((keyword) => (
+                <Badge variant="outline" key={keyword}>
+                  {keyword}
+                </Badge>
+              ))}
             </div>
-            <p class="prose dark:prose-invert" transition:name="blog-description">
-              {post.data.description}
-            </p>
-          </article>
-        </a>
+            <time
+              aria-label="Blog Create Date"
+              class="text-xs font-light text-gray-500"
+              datetime={post.data.date.toString()}
+            >
+              {post.data.date.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </time>
+          </CardContent>
+          <CardFooter>
+            <a href={`/blog/${post.id}`}>
+              <Button variant="outline" size="sm" className="w-full">
+                Read Blog
+              </Button>
+            </a>
+          </CardFooter>
+        </Card>
       ))
     }
   </div>
