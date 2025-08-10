@@ -17,6 +17,10 @@ export default defineConfig({
         "react-dom/server": "react-dom/server.edge",
       } : undefined,
     },
+
+  },
+  markdown: {
+    syntaxHighlight: "prism",
   },
   site: "https://nisargbhatt.org",
   output: "static",

@@ -3,7 +3,6 @@ import { Button } from "@components/ui/button";
 import Layout from "@layouts/Layout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 import { ExternalLinkIcon } from "lucide-react";
-import { render } from "astro:content";
 
 export async function getStaticPaths() {
   const projects = await getCollection("project");

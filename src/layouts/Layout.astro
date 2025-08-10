@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { SEO, type SEOProps } from "astro-seo";
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
+import Posthog from "@components/posthog.astro";
 
 export interface Props {
   seo?: SEOProps;
@@ -28,6 +29,9 @@ const { title = "Nisarg Bhatt", seo, structuredData } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/prism.css" />
+
+    <Posthog />
 
     {seo ? <SEO {...seo} /> : null}
     {structuredData ? <script is:inline is:raw type="application/ld+json" set:html={structuredData} /> : null}
