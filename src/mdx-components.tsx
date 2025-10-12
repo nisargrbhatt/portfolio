@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ExternalLinkIcon } from "lucide-react";
 
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
@@ -19,37 +20,37 @@ type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
 const components = {
   h1: (props: HeadingProps) => (
-    <h1 className="mb-0 pt-12 font-medium" {...props} />
+    <h1
+      className="m-0 scroll-m-20 py-2 text-center text-4xl font-extrabold tracking-tight text-balance"
+      {...props}
+    />
   ),
   h2: (props: HeadingProps) => (
     <h2
-      className="mt-8 mb-3 font-medium text-gray-800 dark:text-zinc-200"
+      className="m-0 scroll-m-20 border-b py-2 text-3xl font-semibold tracking-tight"
       {...props}
     />
   ),
   h3: (props: HeadingProps) => (
     <h3
-      className="mt-8 mb-3 font-medium text-gray-800 dark:text-zinc-200"
+      className="m-0 scroll-m-20 py-2 text-2xl font-semibold tracking-tight"
       {...props}
     />
   ),
-  h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
-  p: (props: ParagraphProps) => (
-    <p className="leading-snug text-gray-800 dark:text-zinc-300" {...props} />
+  h4: (props: HeadingProps) => (
+    <h4
+      className="m-0 scroll-m-20 py-2 text-xl font-semibold tracking-tight"
+      {...props}
+    />
   ),
+  p: (props: ParagraphProps) => <p className="m-0 py-1 leading-7" {...props} />,
   ol: (props: ListProps) => (
-    <ol
-      className="list-decimal space-y-2 pl-5 text-gray-800 dark:text-zinc-300"
-      {...props}
-    />
+    <ol className="my-6 ml-6 list-decimal [&>li]:mt-2" {...props} />
   ),
   ul: (props: ListProps) => (
-    <ul
-      className="list-disc space-y-1 pl-5 text-gray-800 dark:text-zinc-300"
-      {...props}
-    />
+    <ul className="my-6 ml-6 list-disc [&>li]:mt-2" {...props} />
   ),
-  li: (props: ListItemProps) => <li className="pl-1" {...props} />,
+  li: (props: ListItemProps) => <li {...props} />,
   em: (props: ComponentPropsWithoutRef<"em">) => (
     <em className="font-medium" {...props} />
   ),
@@ -81,7 +82,8 @@ const components = {
         className={className}
         {...props}
       >
-        {children}
+        {children}{" "}
+        <ExternalLinkIcon className="mb-[4px] inline" width={14} height={14} />
       </a>
     );
   },
@@ -110,10 +112,7 @@ const components = {
     </Table>
   ),
   blockquote: (props: BlockquoteProps) => (
-    <blockquote
-      className="ml-[0.075em] border-l-3 border-gray-300 pl-4 text-gray-700 dark:border-zinc-600 dark:text-zinc-300"
-      {...props}
-    />
+    <blockquote className="mt-6 border-l-2 pl-6 italic" {...props} />
   ),
 };
 

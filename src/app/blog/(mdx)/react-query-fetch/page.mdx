@@ -1,0 +1,135 @@
+import BlogHeader from "@/app/blog/__components/BlogHeader";
+
+<BlogHeader slug="react-query-fetch" />
+
+<br />
+
+Data fetching is the most crucial part of any web application. This is the showcase of how I like to do data fetching in React codebase. I am a big fan of [Tanstack Query](https://tanstack.com/query) library. It is a powerful and easy to use library for data fetching.
+
+### Business Layer Separation
+
+I like to separate the business logic from the data fetching logic. I like to do this because it makes the code more readable and easier to maintain. So I like to create a `apis` directory in source and create two child directories called `query` and `mutation`.
+
+### Query
+
+Query directory will have all the listing and detail API calls. I also like to follow SOLID principles(not a hardcore follower but by saying it, people know what I am talking about). So, every created query is open for extension but closed for modification.
+
+Query will be a hook which will handle all the data fetching and maintaining related logic. Like filters, pagination, transformation and all. Also as a web standard, all the state should be managed or synced with url search params. It makes page easy to share with other people and shows the same view as person who shared it.
+
+First rule of Frontend is to never trust API, there can be outage, malformed response object, in-proper type handling. So, Every query will have a response schema parse. This also makes our API type safe, as API response are technically a source of truth.
+
+```tsx
+// src/apis/query/entityList.tsx
+
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router";
+import { useAuthContext } from "@contexts/AuthContext";
+import { z } from "zod";
+import sanitize from "sanitize-html";
+
+const responseSchema = z.array(
+  z.object({
+    id: z.number(),
+    name: z.string(),
+    email: z.string(),
+  })
+);
+
+export const queryKey = "entity-list";
+
+export const useEntityList = () => {
+  const { access_token } = useAuthContext();
+
+  const [searchParams, setSearchParams] = useSearchParams({
+    search: "",
+    page: "1",
+    size: "10",
+    tags: [],
+  });
+
+  const [paginationState, setPaginationState] = useState<{
+    search?: string | null;
+    page: number;
+    size: number;
+    tags: string[];
+  }>({
+    search: searchParams.get("search"),
+    page: Number(searchParams.get("page") ?? "1"),
+    size: Number(searchParams.get("size") ?? "10"),
+    tags: searchParams.getAll("tags") ?? [],
+  });
+
+  const entityList = useQuery({
+    queryKey: [
+      queryKey,
+      paginationState?.search,
+      paginationState?.page,
+      paginationState?.size,
+      paginationState?.tags?.join(","),
+    ].filter(Boolean),
+    queryFn: async ({ signal }) => {
+      const filterMap = new Map();
+
+      const parsedSearchValue = sanitize(paginationState?.search?.trim() ?? "");
+
+      if (parsedSearchValue?.length > 0) {
+        filterMap.set("search", parsedSearchValue);
+      }
+
+      if (paginationState?.tags?.length > 0) {
+        filterMap.set("tags", paginationState?.tags);
+      }
+
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users?" +
+          new URLSearchParams({
+            ...(filterMap?.size > 0
+              ? {
+                  filter: JSON.stringify(
+                    Object.fromEntries(filterMap.entries())
+                  ),
+                }
+              : {}),
+            offset: String(paginationState.page),
+            limit: String(paginationState.size),
+          }).toString(),
+        {
+          headers: {
+            Authorization: ["Bearer", access_token].join(" "),
+          },
+          signal,
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => responseSchema.parse(res));
+
+      return {
+        list: response,
+        page: paginationState.page,
+        size: paginationState.size,
+        count: response.length,
+      };
+    },
+  });
+
+  useEffect(() => {
+    setSearchParams(() => ({
+      ...(paginationState?.search && paginationState?.search?.length > 0
+        ? {
+            search: paginationState?.search,
+          }
+        : {}),
+      page: String(paginationState.page),
+      size: String(paginationState.size),
+      tags: paginationState.tags,
+    }));
+  }, [paginationState]);
+
+  return { query: entityList, setPaginationState, paginationState };
+};
+```
+
+So as per above code, every listing query hook will return `query`, `paginationState` and `setPaginationState` object, which can be used by filter, search and pagination components.
+
+You can find example usage in this [Stackblitz Example](https://stackblitz.com/edit/nisargbhatt-tanstack-query-example?file=README.md)
