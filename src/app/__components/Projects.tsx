@@ -8,9 +8,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { projects } from "@/contents/projects";
 import Link from "next/link";
 import type { FC } from "react";
+import { projects } from "@/app/project/projects";
 
 interface Props {}
 

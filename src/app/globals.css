@@ -131,7 +131,7 @@
 }
 
 @utility font-h1 {
-  @apply scroll-m-20 text-balance text-center text-4xl font-extrabold tracking-tight;
+  @apply scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance;
 }
 @utility font-h2 {
   @apply scroll-m-20 text-3xl font-semibold tracking-tight;

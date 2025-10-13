@@ -1,7 +1,39 @@
 import { NextPage } from "next";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { projects } from "./projects";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 const ProjectList: NextPage = () => {
-  return <div></div>;
+  return (
+    <div className="grid w-full grid-cols-1 gap-4 px-4 py-6 sm:grid-cols-2 md:px-6 lg:grid-cols-3">
+      {projects.map((project) => (
+        <Link key={project.id} href={`/project/${project.id}`}>
+          <Card className="animate-on-scroll hover-lift delay-100">
+            <CardHeader>
+              <CardTitle>{project?.title}</CardTitle>
+              <CardDescription>{project?.short_description}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-1">
+                {project?.keywords?.map((keyword) => (
+                  <Badge variant="outline" key={keyword} className="capitalize">
+                    {keyword}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
+    </div>
+  );
 };
 
 export default ProjectList;

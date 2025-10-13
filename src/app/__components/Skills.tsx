@@ -6,9 +6,7 @@ import {
   IconServer,
 } from "@tabler/icons-react";
 
-interface Props {}
-
-const Skills: FC<Props> = () => {
+const Skills: FC = () => {
   return (
     <section id="skills" className="py-12">
       <div className="container px-4 md:px-6">

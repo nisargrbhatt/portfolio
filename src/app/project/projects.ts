@@ -9,15 +9,7 @@ export const projects = [
     repos: [
       {
         name: "Workflow Engine",
-        url: "https://github.com/simple-workflow-engine/workflow-engine",
-      },
-      {
-        name: "Workflow Engine UI",
-        url: "https://github.com/simple-workflow-engine/workflow-engine-ui-r",
-      },
-      {
-        name: "Workflow Engine Docs",
-        url: "https://github.com/simple-workflow-engine/workflow-engine-docs",
+        url: "https://github.com/nisargrbhatt/simple-workflow-engine",
       },
     ],
     previews: [],

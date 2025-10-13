@@ -10,9 +10,7 @@ import {
 import Link from "next/link";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
-interface Props {}
-
-const Header: FC<Props> = () => {
+const Header: FC = () => {
   return (
     <header className="sticky top-0 z-[50] container mx-auto flex w-full flex-row items-center justify-between gap-2 border-r border-b border-l border-neutral-200 p-4 backdrop-blur-xs">
       <Link href="/">

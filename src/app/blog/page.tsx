@@ -10,9 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
-interface Props {}
-
-const BlogList: NextPage<Props> = () => {
+const BlogList: NextPage<PageProps<"/blog">> = () => {
   return (
     <div className="grid w-full grid-cols-1 gap-4 px-4 py-6 sm:grid-cols-2 md:px-6 lg:grid-cols-3">
       {Object.values(blogs).map((blog) => (
