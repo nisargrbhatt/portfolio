@@ -1,8 +1,10 @@
 {
-    "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-astro"],
-    "arrowParens": "always",
-    "printWidth": 120,
-    "endOfLine": "lf",
-    "semi": true,
-    "trailingComma": "es5"
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "tabWidth": 2,
+  "semi": true,
+  "trailingComma": "es5",
+  "tailwindStylesheet": "./src/app/globals.css",
+  "tailwindFunctions": ["clsx"]
 }
