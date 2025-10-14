@@ -15,6 +15,21 @@ export const projects = [
     previews: [],
   },
   {
+    id: "kutumb",
+    title: "Kutumb",
+    short_description: "A community management platform.",
+    description:
+      "Kutumb is a community management platform for Shree Sorthiya ShreeGaud Brahmin Samaj. It has feature like member list, relationship graph, photo gallery and memories.",
+    keywords: ["kutumb", "nextjs", "convex", "reactflow", "typescript"],
+    repos: [
+      {
+        name: "Kutumb Convex",
+        url: "https://github.com/nisargrbhatt/kutumb-convex",
+      },
+    ],
+    previews: [],
+  },
+  {
     id: "next-shop",
     title: "Next Shop",
     short_description: "E-Commerce project",

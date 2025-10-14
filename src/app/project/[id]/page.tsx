@@ -1,9 +1,45 @@
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import { notFound } from "next/navigation";
 import { projects } from "../projects";
 import { Button } from "@/components/ui/button";
 import { IconBrandGithub } from "@tabler/icons-react";
 import Link from "next/link";
+import { SITE_URL } from "@/lib/common";
+
+export const generateStaticParams = async () => {
+  return projects.map((p) => ({
+    id: p.id,
+  }));
+};
+
+export const generateMetadata = async (
+  props: PageProps<"/project/[id]">
+): Promise<Metadata> => {
+  const projectId = (await props.params).id;
+
+  if (!projectId) {
+    return notFound();
+  }
+
+  const project = projects.find((p) => p.id === projectId);
+
+  if (!project) {
+    return notFound();
+  }
+
+  return {
+    title: project.title,
+    description: project.description,
+    keywords: project.keywords,
+    twitter: {
+      card: "summary",
+      creator: "@nisarg_2001",
+      title: project.title,
+      description: project.description,
+      site: SITE_URL,
+    },
+  };
+};
 
 const ProjectDetail: NextPage<PageProps<"/project/[id]">> = async ({
   params,
