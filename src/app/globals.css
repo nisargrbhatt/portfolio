@@ -146,6 +146,10 @@
   @apply leading-7 text-gray-500 dark:text-gray-400;
 }
 
+@utility link {
+  @apply cursor-pointer border-b border-dotted border-black no-underline;
+}
+
 body {
   text-rendering: optimizeLegibility;
 }

@@ -60,7 +60,7 @@ function Carousel({
     [
       EmblaCarouselAutoplayPlugin({
         active: true,
-        delay: 300,
+        delay: 3000,
         playOnInit: true,
       }),
       ...(plugins ?? []),

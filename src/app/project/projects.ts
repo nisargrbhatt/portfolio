@@ -12,7 +12,15 @@ export const projects = [
         url: "https://github.com/nisargrbhatt/simple-workflow-engine",
       },
     ],
-    previews: [],
+    previews: [
+      "https://engine-docs.nisargbhatt.org/engine/engine1.png",
+      "https://engine-docs.nisargbhatt.org/engine/engine2.png",
+      "https://engine-docs.nisargbhatt.org/engine/engine3.png",
+      "https://engine-docs.nisargbhatt.org/engine/engine4.png",
+      "https://engine-docs.nisargbhatt.org/engine/engine5.png",
+      "https://engine-docs.nisargbhatt.org/engine/engine6.png",
+    ],
+    test_url: "https://engine.nisargbhatt.org",
   },
   {
     id: "kutumb",
@@ -28,6 +36,7 @@ export const projects = [
       },
     ],
     previews: [],
+    test_url: "https://kutumb.nisargbhatt.org",
   },
   {
     id: "next-shop",

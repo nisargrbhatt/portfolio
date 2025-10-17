@@ -16,11 +16,7 @@ const Hero: FC<Props> = () => {
             </h1>
             <p className="max-w-lg font-p">
               Full Stack Developer based in Gujarat, India. Working at{" "}
-              <Link
-                href="https://sath.com"
-                target="_blank"
-                className="underline"
-              >
+              <Link href="https://sath.com" target="_blank" className="link">
                 Sath
               </Link>{" "}
               as a Senior Software Engineer. I specialize in helping startups
