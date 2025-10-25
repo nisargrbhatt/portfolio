@@ -14,6 +14,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { ExternalLinkIcon } from "lucide-react";
+import Image from "next/image";
 
 export const generateStaticParams = async () => {
   return projects.map((p) => ({
@@ -132,11 +133,11 @@ const ProjectDetail: NextPage<PageProps<"/project/[id]">> = async ({
             <div className="w-full px-2">
               <Carousel className="mx-auto w-[250px] max-w-xs sm:w-full sm:max-w-xl">
                 <CarouselContent>
-                  {project?.previews?.map((imageUrl) => (
-                    <CarouselItem key={imageUrl}>
+                  {project?.previews?.map(({ url, alt }) => (
+                    <CarouselItem key={url}>
                       <div className="p-1">
                         <AspectRatio ratio={16 / 9} className="rounded-lg">
-                          <img src={imageUrl} loading="lazy" />
+                          <Image src={url} loading="lazy" alt={alt} fill />
                         </AspectRatio>
                       </div>
                     </CarouselItem>

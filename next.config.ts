@@ -11,6 +11,13 @@ const nextConfig: NextConfig = {
   experimental: {
     mdxRs: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "engine-docs.nisargbhatt.org",
+      },
+    ],
+  },
 };
 
 const withMDX = createMDX({});

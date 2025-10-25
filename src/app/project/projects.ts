@@ -13,12 +13,30 @@ export const projects = [
       },
     ],
     previews: [
-      "https://engine-docs.nisargbhatt.org/engine/engine1.png",
-      "https://engine-docs.nisargbhatt.org/engine/engine2.png",
-      "https://engine-docs.nisargbhatt.org/engine/engine3.png",
-      "https://engine-docs.nisargbhatt.org/engine/engine4.png",
-      "https://engine-docs.nisargbhatt.org/engine/engine5.png",
-      "https://engine-docs.nisargbhatt.org/engine/engine6.png",
+      {
+        url: "https://engine-docs.nisargbhatt.org/engine/engine1.png",
+        alt: "Create Definition Setting Dialog",
+      },
+      {
+        url: "https://engine-docs.nisargbhatt.org/engine/engine2.png",
+        alt: "Function Task Props",
+      },
+      {
+        url: "https://engine-docs.nisargbhatt.org/engine/engine3.png",
+        alt: "Sample Definition Graph",
+      },
+      {
+        url: "https://engine-docs.nisargbhatt.org/engine/engine4.png",
+        alt: "Definition Detail Page",
+      },
+      {
+        url: "https://engine-docs.nisargbhatt.org/engine/engine5.png",
+        alt: "Definition Run Dialog",
+      },
+      {
+        url: "https://engine-docs.nisargbhatt.org/engine/engine6.png",
+        alt: "Definition Runtime Detail",
+      },
     ],
     test_url: "https://engine.nisargbhatt.org",
   },
