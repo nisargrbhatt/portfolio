@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import {
   Card,
   CardContent,
@@ -9,6 +9,10 @@ import {
 import { projects } from "./projects";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Projects",
+};
 
 const ProjectList: NextPage = () => {
   return (

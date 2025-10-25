@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
 import { blogs, blogSlugs } from "./blogs";
 import {
   Card,
@@ -9,6 +9,10 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Blogs",
+};
 
 const BlogList: NextPage<PageProps<"/blog">> = () => {
   return (
