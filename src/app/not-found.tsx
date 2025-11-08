@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { NextPage } from "next";
+import Link from "next/link";
 
 const NotFound: NextPage = () => {
   return (
@@ -14,9 +15,9 @@ const NotFound: NextPage = () => {
           been moved, deleted, or never existed.
         </p>
 
-        <a href="/">
-          <Button> Back to home</Button>
-        </a>
+        <Link href="/">
+          <Button>Back to home</Button>
+        </Link>
       </div>
     </div>
   );

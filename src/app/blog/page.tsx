@@ -31,7 +31,7 @@ const BlogList: NextPage<PageProps<"/blog">> = () => {
 
           return (
             <Link key={blog.slug} href={`/blog/${blog.slug}` as any}>
-              <Card>
+              <Card className="h-full">
                 <CardHeader>
                   <CardTitle>{blog.title}</CardTitle>
                   <CardDescription>{blog.description}</CardDescription>

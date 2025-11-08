@@ -1,4 +1,4 @@
-export const blogSlugs = ["react-query-fetch"] as const;
+export const blogSlugs = ["love-orpc-monorepo", "react-query-fetch"] as const;
 
 export const blogs: Record<
   (typeof blogSlugs)[number],
@@ -18,5 +18,22 @@ export const blogs: Record<
     keywords: ["tanstack", "react", "query", "fetch", "@tanstack/react-query"],
     slug: "react-query-fetch",
     readingTime: "5 min read",
+  },
+  "love-orpc-monorepo": {
+    title: "oRPC and Turborepo: A Match Made in Monorepo Heaven",
+    description:
+      "How oRPC and Turborepo can help you build a better monorepo with end-to-end type safety.",
+    createdAt: "2025-11-08T07:00:10.748Z",
+    keywords: [
+      "orpc",
+      "turborepo",
+      "monorepo",
+      "typescript",
+      "vite",
+      "next.js",
+      "typesafety",
+    ],
+    slug: "love-orpc-monorepo",
+    readingTime: "4 min read",
   },
 };

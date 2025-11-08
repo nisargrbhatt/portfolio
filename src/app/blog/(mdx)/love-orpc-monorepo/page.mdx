@@ -1,0 +1,42 @@
+import BlogHeader from "@/app/blog/__components/BlogHeader";
+
+<BlogHeader slug="love-orpc-monorepo" />
+
+<br />
+
+In the world of modern web development, building robust and scalable applications requires a solid foundation. Monorepos, powered by tools like [Turborepo](https://turbo.build/repo), have emerged as a popular choice for managing complex projects. When combined with technologies that enforce end-to-end type safety, such as [oRPC](https://orpc.unnoq.com/), we can create a development experience that is both efficient and reliable. This blog post explores the benefits of using oRPC and Turborepo together, and how they promote contract-based development.
+
+### The Power of Monorepos with Turborepo
+
+A monorepo is a single repository containing multiple projects. This approach simplifies dependency management, streamlines code sharing, and improves collaboration across teams. Turborepo, a high-performance build system for JavaScript and TypeScript monorepos, takes this a step further. It intelligently caches build outputs, ensuring that you only rebuild what has changed, resulting in lightning-fast build times.
+
+### End-to-End Type Safety with oRPC
+
+oRPC is a toolkit for building end-to-end typesafe APIs. It allows you to define your API contracts using libraries like Zod, and then generates typesafe client and server code. This means that your frontend and backend are always in sync, eliminating a whole class of bugs at compile time.
+
+Some of the key features of oRPC include:
+
+- **Contract-First Development:** Define your API contract once, and oRPC takes care of the rest. This ensures that your API is well-documented and easy to consume.
+- **End-to-End Type Safety:** oRPC generates types for your API clients and servers, ensuring that your code is type-safe from the frontend to the backend.
+- **Framework Agnostic:** oRPC can be used with any framework, including Next.js, Express, and more.
+- **OpenAPI Compliant:** oRPC generates OpenAPI specifications, making it easy to integrate with other tools and services.
+
+### Contract-Based Development
+
+The combination of oRPC and a monorepo architecture naturally leads to a contract-based development workflow. The API contract, defined with oRPC, becomes the single source of truth for both the frontend and backend teams. This has several advantages:
+
+- **Improved Collaboration:** Frontend and backend developers can work in parallel, confident that their code will integrate seamlessly.
+- **Clearer APIs:** The API contract serves as clear documentation for how the API works.
+- **Easier Testing:** With a clear contract, it's easier to write integration and end-to-end tests.
+
+### The Monorepo Template
+
+To demonstrate the power of this stack, I have created a monorepo template that uses Turborepo, oRPC, and Next.js. This template provides a solid starting point for building your own typesafe monorepo applications.
+
+You can find the template on GitHub: [monorepo-template](https://github.com/nisargrbhatt/monorepo-template)
+
+This template showcases how to structure a monorepo with separate apps for the web client and the API, while sharing code and types between them.
+
+### Conclusion
+
+By combining the power of Turborepo for monorepo management and oRPC for end-to-end type safety, we can create a development workflow that is fast, reliable, and a pleasure to work with. This stack promotes contract-based development, leading to better collaboration and higher-quality applications. If you're looking to build a modern, scalable web application, I highly recommend giving this stack a try.
