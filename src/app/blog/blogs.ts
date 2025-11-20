@@ -1,4 +1,8 @@
-export const blogSlugs = ["love-orpc-monorepo", "react-query-fetch"] as const;
+export const blogSlugs = [
+  "anatomy-of-jwt",
+  "love-orpc-monorepo",
+  "react-query-fetch",
+] as const;
 
 export const blogs: Record<
   (typeof blogSlugs)[number],
@@ -35,5 +39,22 @@ export const blogs: Record<
     ],
     slug: "love-orpc-monorepo",
     readingTime: "4 min read",
+  },
+  "anatomy-of-jwt": {
+    title: "Anatomy of a JWT (JSON Web Token)",
+    description:
+      "A deep dive into the structure of a JWT, including the header, payload, and signature.",
+    createdAt: "2025-11-20T09:00:00.000Z",
+    keywords: [
+      "jwt",
+      "json web token",
+      "authentication",
+      "authorization",
+      "security",
+      "nodejs",
+      "jose",
+    ],
+    slug: "anatomy-of-jwt",
+    readingTime: "10 min read",
   },
 };
