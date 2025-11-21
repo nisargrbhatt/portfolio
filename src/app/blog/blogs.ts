@@ -1,3 +1,7 @@
+import { SITE_URL } from "@/lib/common";
+import { Metadata } from "next";
+import { WithContext, BlogPosting } from "schema-dts";
+
 export const blogSlugs = [
   "anatomy-of-jwt",
   "love-orpc-monorepo",
@@ -57,4 +61,67 @@ export const blogs: Record<
     slug: "anatomy-of-jwt",
     readingTime: "10 min read",
   },
+};
+
+export const getSeoMetadata = (
+  slug: (typeof blogSlugs)[number]
+): { metadata: Metadata; jsonLd: WithContext<BlogPosting> } => {
+  const jsonLd: WithContext<BlogPosting> = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: blogs[slug].title,
+    datePublished: new Date(blogs[slug].createdAt).toISOString(),
+    description: blogs[slug].description,
+    url: new URL(`/blog/${slug}`, SITE_URL).toString(),
+    keywords: blogs[slug].keywords.join(", "),
+    author: [
+      {
+        "@type": "Person",
+        image: new URL("/me.png", SITE_URL).toString(),
+        jobTitle: "Full Stack Developer",
+        description:
+          "I'm Nisarg Bhatt, a Full Stack Developer from India. I'm passionate about building scalable and performant applications using modern technologies.",
+        name: "Nisarg Bhatt",
+        givenName: "Nisarg",
+        familyName: "Bhatt",
+        url: SITE_URL,
+        sameAs: [
+          "https://github.com/nisargrbhatt",
+          "https://www.linkedin.com/in/nisarg-r-bhatt/",
+          "https://x.com/nisarg_2001",
+        ],
+        email: "mailto:nisargrbhatt@gmail.com",
+        gender: "Male",
+        nationality: "Indian",
+      },
+    ],
+  };
+
+  return {
+    metadata: {
+      title: blogs[slug].title,
+      description: blogs[slug].description,
+      openGraph: {
+        type: "article",
+        title: blogs[slug].title,
+        description: blogs[slug].description,
+        images: [
+          {
+            url: new URL(
+              `/api/og/blog?${new URLSearchParams({
+                title: blogs[slug].title,
+                date: blogs[slug].createdAt,
+              }).toString()}`,
+              SITE_URL
+            ).toString(),
+            width: 1200,
+            height: 628,
+            alt: "",
+          },
+        ],
+        url: new URL(`/blog/${slug}`, SITE_URL).toString(),
+      },
+    },
+    jsonLd,
+  };
 };

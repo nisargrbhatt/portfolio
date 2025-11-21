@@ -1,4 +1,7 @@
 import BlogHeader from "@/app/blog/__components/BlogHeader";
+import { getSeoMetadata } from "@/app/blog/blogs.ts";
+
+export const metadata = getSeoMetadata("anatomy-of-jwt").metadata;
 
 <BlogHeader slug="anatomy-of-jwt" />
 
