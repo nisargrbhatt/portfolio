@@ -16,8 +16,8 @@ const Hero: FC<Props> = () => {
             </h1>
             <p className="max-w-lg font-p">
               Full Stack Developer based in Gujarat, India. Working at{" "}
-              <Link href="https://sath.com" target="_blank" className="link">
-                Sath
+              <Link href="https://www.bhrigu.tech" target="_blank" className="link">
+                Bhrigu Tech
               </Link>{" "}
               as a Senior Software Engineer. I specialize in helping startups
               build their MVP fast and scalable. Love to architect and design
@@ -36,6 +36,7 @@ const Hero: FC<Props> = () => {
               "NoSQL",
               "Postgres",
               "MongoDB",
+              "AI SDK"
             ].map((tech) => (
               <Badge key={tech} variant="outline">
                 {tech}
